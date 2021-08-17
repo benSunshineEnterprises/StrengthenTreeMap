@@ -34,7 +34,7 @@ fig.update_traces(
 )
 fig.data[0].hovertemplate = 'Strengthen: %{label}<br>Number: %{value}'
 fig.show()
-
+fig.write_html("2020Strengthens.html")
 
 
 
