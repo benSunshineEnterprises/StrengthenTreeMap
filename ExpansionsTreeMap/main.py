@@ -17,8 +17,10 @@ df["percent"]=(df["Number"]/sum)*100
 percent=df["percent"]
 fig = px.treemap(df, 
                  path=['Strengthen'], 
+                 names="Strengthen",
                  values='Number',
-                 color='Number',
+                 color="Number",
+                 color_continuous_scale='ylgnbu',
 )
 fig.update_layout(
     font=dict(
@@ -29,12 +31,16 @@ fig.update_layout(
     uniformtext_minsize=16, 
 )
 fig.update_traces(
-    texttemplate = "%{label}: %{value:s}",                
-
+    texttemplate = "%{label}: %{value:s} <br> %{percentEntry}",                
+    text=df["percent"],
+    textinfo="text+label",
 )
-fig.data[0].hovertemplate = 'Strengthen: %{label}<br>Number: %{value}'
+fig.data[0].hovertemplate = 'Strengthen: %{label}<br>Number: %{value} <br>%{root}'
+
+print("Hello world",fig.data[0])
 fig.show()
-fig.write_html("index.html")
+#Write to HTML
+#fig.write_html("index.html")
 
 
 
